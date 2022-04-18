@@ -1,12 +1,13 @@
 const dino = document.querySelector('.dino');
 const background = document.querySelector('.background');
+const soundGameOver = document.getElementById("gameover");
 
 let isJumping = false;
 let isGameOver = false;
 let position = 0;
 
 function handleKeyUp(event) {
-  if (event.keyCode === 32) {
+  if (event.keyCode === 32 || event.keyCode === 87 || event.keyCode === 38) {
     if (!isJumping) {
       jump();
     }
@@ -43,7 +44,10 @@ function createCactus() {
   let cactusPosition = 1000;
   let randomTime = Math.random() * 6000;
 
-  if (isGameOver) return;
+  if (isGameOver){
+    soundGameOver.play(); 
+    return;
+  }
 
   cactus.classList.add('cactus');
   background.appendChild(cactus);
